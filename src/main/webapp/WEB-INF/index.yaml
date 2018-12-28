@@ -1,0 +1,8 @@
+indexes:
+- kind: Message
+  ancestor: no
+  properties:
+  - name: receivers
+    direction: asc
+  - name: timestamp
+    direction: desc

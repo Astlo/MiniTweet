@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-resource.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+  <head>
+    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+    <title>Hello App Engine</title>
+  </head>
+
+  <body ng-app="servicesApi">
+    <h1>Hello Twitter!</h1>
+  
+    <table>
+      <tr>
+        <td colspan="2" style="font-weight:bold;">Available Servlets:</td>        
+      </tr>
+      <tr>
+        <td><a href='/hello'>The servlet</a></td><br>
+      </tr>
+      <tr>
+        <td><a href='/_ah/api/explorer'>The api</a></td>
+      </tr>
+    </table>
+    <h2>Ajout d'un nouvel utilisateur</h2>
+    <div ng-controller="addUser">
+	    <form novalidate class = "simple-form">
+		    <input type="text" ng-model = "number" placeholder ="Entrez le nombre d'utilisateurs"/><br>
+		    <input type="submit" ng-click="SendUser(number)" value = "Ajouter"/>
+	    </form>
+    </div>
+    <h2>Follow de l'utilisateur usertest0</h2>
+    <div ng-controller="followUser">
+	    <form novalidate class = "simple-form">
+		  <input type="text" ng-model = "number" placeholder ="Entrez le nombre de follow"/><br>
+		  <input type="submit" ng-click="userFollow(number)" value = "Follow"/>
+	    </form>
+    </div>
+    <h2>Post d'un tweet de usertest0</h2>
+    <div ng-controller="posttweet">
+		<input type="text" ng-model = "message" placeholder ="Entrez votre message"/><br>
+   		<input type="submit" ng-click="addMessage(message)" value = "Post Tweet"/>
+	    <p>Temps  : {{PostDataResponse.id}} millisecondes</p>
+    </div>
+    <h2>Affichage de la timeline</h2>
+    <p>Création d'un utilisateur, lui faire suivre n comptes et récupérer m messages sur sa timeline.</p>
+    <div ng-controller="initialisation">
+		<input type="text" ng-model = "compte" placeholder ="n comptes"/><br>
+    	<input type="submit" ng-click="getInit(compte)" value="Initialisation : Création d'un utilisateur, lui faire suivre n comptes">
+    </div>
+    <br>
+    <div ng-controller="timeline">
+		<input type="text" ng-model = "message" placeholder ="m messages"/><br>
+   		<input type="submit" ng-click="getTimeline(message)" value = "Timeline"/>
+	   	<table>
+            <tr>
+                <th>Username</th>
+                <th>Tweet</th>
+            </tr>
+            <tr ng-repeat="tweet in usertimeline">
+                <td>{{ tweet.sender }}</td>
+                <td>{{ tweet.message }}</td>
+            </tr>
+        </table>
+        
+	    <!-- {{usertimeline.items}}  -->
+    </div>
+	<script>
+		var app = angular.module('servicesApi', []);
+		
+		app.controller('addUser', function($scope, $http) {
+			$scope.SendUser = function (number) {
+				var i;
+				for (i = 0; i < number; i++) { 
+					var config = {
+			                headers : {
+			                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+			                }
+			            }
+						var data = "";
+						$http.post('https://minitwettest.appspot.com/_ah/api/apiTweet/v1/adduser?username=user'+i.toString(), data, config)
+			            .success(function (data, status, headers, config) {
+			                $scope.PostDataResponse = data;
+			            })
+			            .error(function (data, status, header, config) {
+			                $scope.ResponseDetails = "Data: " + data +
+			                    "<hr />status: " + status +
+			                    "<hr />headers: " + header +
+			                    "<hr />config: " + config;
+			         });
+				}
+			};
+		});
+		
+		app.controller('followUser', function($scope, $http) {
+			$scope.userFollow = async function (number) {
+				var i;
+				for (i = 0; i < number; i++) { 
+					var config = {
+			                headers : {
+			                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+			                }
+			            }
+						var data = "";
+						let s = await $http.post('https://minitwettest.appspot.com/_ah/api/apiTweet/v1/follow?followed=usertest0&userId=user'+i.toString(), data, config)
+			            .success(function (data, status, headers, config) {
+			                $scope.PostDataResponse = data;
+			            })
+			            .error(function (data, status, header, config) {
+			                $scope.ResponseDetails = "Data: " + data +
+			                    "<hr />status: " + status +
+			                    "<hr />headers: " + header +
+			                    "<hr />config: " + config;
+			         });
+				}
+			};
+		});
+		
+		app.controller('posttweet', function($scope, $http) {
+			$scope.addMessage = function (message) {
+				var config = {
+		            headers : {
+		            	'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+		        	}
+		        }
+				var data = "";
+				$http.post('https://minitwettest.appspot.com/_ah/api/apiTweet/v1/addmsg?userId=usertest0&userMsg='+message.toString(), data, config)
+		            .success(function (data, status, headers, config) {
+		                $scope.PostDataResponse = data;
+		                $scope.perf = data.elapsedTime;
+		            })
+		            .error(function (data, status, header, config) {
+		                $scope.ResponseDetails = "Data: " + data +
+		                    "<hr />status: " + status +
+		                    "<hr />headers: " + header +
+		                    "<hr />config: " + config;
+		         });
+			};
+		});
+		
+		app.controller('initialisation', function($scope, $http) {
+			$scope.getInit = async function (compte) {
+				var config = {
+		                headers : {
+		                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+		                }
+		            }
+				var data = "";
+			    let s = await $http.post('https://minitwettest.appspot.com/_ah/api/apiTweet/v1/adduser?username=timelineuser', data, config)
+	            .success(function (data, status, headers, config) {
+	                $scope.PostDataResponse = data;
+	            })
+	            .error(function (data, status, header, config) {
+	                $scope.ResponseDetails = "Data: " + data +
+	                    "<hr />status: " + status +
+	                    "<hr />headers: " + header +
+	                    "<hr />config: " + config;
+		         });
+				var i;
+				for (i = 0; i < compte; i++) { 
+					var config = {
+		                headers : {
+		                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+		                }
+		            }
+					var data = "";
+				    let s = await $http.post('https://minitwettest.appspot.com/_ah/api/apiTweet/v1/adduser?username=follow'+i.toString(), data, config)
+		            .success(function (data, status, headers, config) {
+		                $scope.PostDataResponse = data;
+		            })
+		            .error(function (data, status, header, config) {
+		                $scope.ResponseDetails = "Data: " + data +
+		                    "<hr />status: " + status +
+		                    "<hr />headers: " + header +
+		                    "<hr />config: " + config;
+			         });
+				}
+				var j;
+				for (j = 0; j < compte; j++) { 
+					var config = {
+		                headers : {
+		                    'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8;'
+		                }
+		            }
+					var data = "";
+					let s = await $http.post('https://minitwettest.appspot.com/_ah/api/apiTweet/v1/follow?followed=follow'+j.toString()+'&userId=timelineuser', data, config)
+		            .success(function (data, status, headers, config) {
+		                $scope.PostDataResponse = data;
+		            })
+		            .error(function (data, status, header, config) {
+		                $scope.ResponseDetails = "Data: " + data +
+		                    "<hr />status: " + status +
+		                    "<hr />headers: " + header +
+		                    "<hr />config: " + config;
+			         });
+					
+					
+					let t = await $http.post('https://minitwettest.appspot.com/_ah/api/apiTweet/v1/addmsg?userId=follow' + j.toString() + '&userMsg=Coucou de follow'+j.toString(), data, config)
+		            .success(function (data, status, headers, config) {
+		                $scope.PostDataResponse = data;
+		            })
+		            .error(function (data, status, header, config) {
+		                $scope.ResponseDetails = "Data: " + data +
+		                    "<hr />status: " + status +
+		                    "<hr />headers: " + header +
+		                    "<hr />config: " + config;
+			         });
+				}
+			};
+		});
+
+		app.controller('timeline', function($scope, $http) {
+			$scope.getTimeline = function (message) {
+				$http.get('https://minitwettest.appspot.com/_ah/api/apiTweet/v1/timeline?nbDeMessages='+message+'&userID=timelineuser')
+		            .success(function(response) {
+		            	$scope.usertimeline = response.items;
+		            	$scope.perf = response.elapsedTime;
+		            });
+			};
+		});
+	</script>
+	
+  </body>
+</html>
