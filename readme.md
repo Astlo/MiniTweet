@@ -19,8 +19,8 @@ Dans le cadre des cours de Web&Cloud en Master Informatique à l'Université Sci
 [retour au plan](https://github.com/Astlo/MiniTweet/blob/master/readme.md#plan)
 >Sur 30 mesures, combien de temps en moyenne prend le post d’un twitt pour une personne suivie par 100 followers, 1000 followers ou 5000 followers ?
 
-100 foll | 1000 foll | 5000 foll
--------- | --------- | ---------
+100 followers | 1000 followers | 5000 followers
+:--------: | :---------: | :---------:
 299 |150| 1024
 297 |116| 503
 276 |215| 481
@@ -53,7 +53,7 @@ Dans le cadre des cours de Web&Cloud en Master Informatique à l'Université Sci
 106 |156| 285
 
 ##### Resultats
-x | 100 | 1000 | 5000 |
+x | 100 followers | 1000 followers| 5000 followers
 ------------- | ---: | ----: | ----:
 **moyenne en ms** |239,566 | 156,300 | 447,500
 **variance** | 2823,840 | 1592,079 | 16676,741
@@ -65,8 +65,8 @@ x | 100 | 1000 | 5000 |
 50 derniers messages et 100 derniers messages ?
 
 #### Configuration 100 followers
-10 mes | 50 mes	| 100 mes
------- | ------ | -------
+10 messages | 50 messages	| 100 messages
+:------: | :------: | :-------:
 2	|2|	308
 2 |2| 2
 2	|2| 2
@@ -99,14 +99,14 @@ x | 100 | 1000 | 5000 |
 2	|2|	1
 
 ##### Resultats
-x | 10 | 50 | 100 |
+x | 10 messages | 50 messages | 100 messages
 ------------- | ---: | ----: | ----:
 **moyenne en ms** |1,666 | 2,133 | 11,733
 **variance** | 0,230 | 3,775 | 3131,306
 **écart type** | 0,479 | 1,943 | 55,958
 #### Configuration 1000 followers
-10 mes | 50 mes	| 100 mes
------- | ------ | -------
+10 messages | 50 messages	| 100 messages
+:-----: | :------: | :-------:
 1	|2|	2
 1	|2|	2
 1	|2|	2
@@ -139,14 +139,14 @@ x | 10 | 50 | 100 |
 2	|2|	1
 
 ##### Resultats
-x | 10 | 50 | 100 |
+x | 10 messages | 50 messages| 100 messages
 ------------- | ---: | ----: | ----:
 **moyenne en ms** |1,300 | 1,533 | 1,533
 **variance** | 0,217 | 2,120 | 0,257
 **écart type** | 0,466 | 1,456 | 0,507
 #### Configuration 5000 followers
-10 mes | 50 mes	| 100 mes
------- | ------ | -------
+10 messages | 50 messages	| 100 messages
+:------: | :------: | :-------:
 17	|1|	2
 1	|1|	1
 1	|1|	1
@@ -179,7 +179,7 @@ x | 10 | 50 | 100 |
 2	|1|	2
 
 ##### Resultats
-x | 10 | 50 | 100 |
+x | 10 messages | 50 messages | 100 messages
 ------------- | ---: | ----: | ----:
 **moyenne en ms** |4,800 | 2,466 | 1,100
 **variance** | 298,717 | 58,671 | 0,093
@@ -189,8 +189,8 @@ x | 10 | 50 | 100 |
 [retour au plan](https://github.com/Astlo/MiniTweet/blob/master/readme.md#plan)
 >Sur 30 mesures, combien de temp en moyenne pour extraire les 50 derniers message pour une hashtag concernant 1000 et 5000 messages ?
 
-1000 mes | 5000 mes
--------- | --------
+1000 messages | 5000 messages
+:--------: | :--------:
 288	|1
 1|	1
 1|	1
@@ -223,7 +223,7 @@ x | 10 | 50 | 100 |
 2|	2
 
 ##### Resultats
-x | 1000 | 5000 
+x | 1000 messages | 5000 messages
 ------------- | ----: | ----: 
 **moyenne en ms** |11,000 | 1,600
 **variance** | 2737,310 | 0,248
