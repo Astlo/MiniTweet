@@ -7,9 +7,9 @@ Dans le cadre des cours de Web&Cloud en Master Informatique à l'Université Sci
 ## Plan
 * [Présentation du projet](https://github.com/Astlo/MiniTweet/blob/master/readme.md#presentation)
 * [Tests](https://github.com/Astlo/MiniTweet/blob/master/readme.md#tests)
-   - [question 1 : Post d'un tweet](https://github.com/Astlo/MiniTweet/blob/master/readme.md#question-1)  
-   - [question 2 : Récupération timeline](https://github.com/Astlo/MiniTweet/blob/master/readme.md#question-2)  
-   - [question 3 : Hashtag](https://github.com/Astlo/MiniTweet/blob/master/readme.md#question-3) 
+   - [question 1 : Post d'un tweet](https://github.com/Astlo/MiniTweet#question-1)  
+   - [question 2 : Récupération timeline](https://github.com/Astlo/MiniTweet#question-2)  
+   - [question 3 : Hashtag](https://github.com/Astlo/MiniTweet#question-3) 
 * [Performances](https://github.com/Astlo/MiniTweet/blob/master/readme.md#performances)
 ## Presentation
    Le [sujet] du projet.  
