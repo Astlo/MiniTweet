@@ -17,6 +17,8 @@ public class Message {
 	private String message;
 	
 	private @Index List<String> receivers = new ArrayList<String>();
+	
+	private @Index List<String> HashTag = new ArrayList<String>();
 
 	private @Index long timestamp;
 	
@@ -83,4 +85,13 @@ public class Message {
 	}
 	
 
+	public void addHashTag(String hashTag) {
+		if(this.HashTag == null) {
+			this.HashTag = new ArrayList<String>(); 
+		}
+		if(!this.HashTag.contains(hashTag))
+		{
+			this.HashTag.add(hashTag);
+		}
+	}
 }

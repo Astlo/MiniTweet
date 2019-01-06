@@ -1,5 +1,7 @@
 package tinyTwitter;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.ArrayList;
 
 import com.google.api.server.spi.config.Api;
@@ -27,6 +29,11 @@ public class ApiTweet {
 		{
 			List<String> users = usr.getFollowers();
 			Message e = new Message(message, users, username);
+			Pattern p = Pattern.compile("#[A-Za-z]+");
+		    Matcher m = p.matcher(message);
+		    while(m.find()) {
+		    	e.addHashTag(m.group());
+		    }
 			ofy().save().entities(e).now();
 		}
 		time2 = System.currentTimeMillis();
@@ -40,6 +47,20 @@ public class ApiTweet {
 		List<Message> timeline = new ArrayList<Message>();
 		time1 = System.currentTimeMillis();
 		timeline = ofy().load().type(Message.class).filter("receivers ==", pseudo).order("-timestamp").limit(nbMessage).list();
+		time2 = System.currentTimeMillis();
+		List<Message> newList = new ArrayList<Message>();
+		newList.add(new Message(Long.toString(time2 - time1),new ArrayList<String>(), "Temps"));
+		newList.addAll(timeline);
+		return newList;
+	}
+	
+	@ApiMethod(name="hashtag", path = "hashtag")
+	public List<Message> getTimelineHashtag(@Named("tag") String hashtag,@Named("nbDeMessages") int nbMessage) {
+		long time1;
+		long time2;
+		List<Message> timeline = new ArrayList<Message>();
+		time1 = System.currentTimeMillis();
+		timeline = ofy().load().type(Message.class).filter("HashTag ==", hashtag).order("-timestamp").limit(nbMessage).list();
 		time2 = System.currentTimeMillis();
 		List<Message> newList = new ArrayList<Message>();
 		newList.add(new Message(Long.toString(time2 - time1),new ArrayList<String>(), "Temps"));

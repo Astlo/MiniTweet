@@ -6,3 +6,10 @@ indexes:
     direction: asc
   - name: timestamp
     direction: desc
+- kind: Message
+  ancestor: no
+  properties:
+  - name: HashTag
+    direction: asc
+  - name: timestamp
+    direction: desc

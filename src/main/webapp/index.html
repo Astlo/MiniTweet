@@ -64,8 +64,23 @@
                 <td>{{ tweet.message }}</td>
             </tr>
         </table>
-        
-	    <!-- {{usertimeline.items}}  -->
+    </div>
+    <br>
+    <h2>Récupération des tweets avec un hashtag</h2>
+    <div ng-controller="hashtag">
+		<input type="text" ng-model = "message" placeholder ="m messages"/><br>
+		<input type="text" ng-model = "hashtag" placeholder ="hashtag"/><br>
+   		<input type="submit" ng-click="getHashtag(message, hashtag)" value = "Hashtag"/>
+	   	<table>
+            <tr>
+                <th>Username</th>
+                <th>Tweet</th>
+            </tr>
+            <tr ng-repeat="tweet in usertimeline">
+                <td>{{ tweet.sender }}</td>
+                <td>{{ tweet.message }}</td>
+            </tr>
+        </table>
     </div>
 	<script>
 		var app = angular.module('servicesApi', []);
@@ -126,10 +141,9 @@
 		        	}
 		        }
 				var data = "";
-				$http.post('https://minitwettest.appspot.com/_ah/api/apiTweet/v1/addmsg?userId=usertest0&userMsg='+message.toString(), data, config)
+				$http.post('https://minitwettest.appspot.com/_ah/api/apiTweet/v1/addmsg?userId=usertest0&userMsg='+encodeURIComponent(message), data, config)
 		            .success(function (data, status, headers, config) {
 		                $scope.PostDataResponse = data;
-		                $scope.perf = data.elapsedTime;
 		            })
 		            .error(function (data, status, header, config) {
 		                $scope.ResponseDetails = "Data: " + data +
@@ -214,6 +228,17 @@
 		app.controller('timeline', function($scope, $http) {
 			$scope.getTimeline = function (message) {
 				$http.get('https://minitwettest.appspot.com/_ah/api/apiTweet/v1/timeline?nbDeMessages='+message+'&userID=timelineuser')
+		            .success(function(response) {
+		            	$scope.usertimeline = response.items;
+		            	$scope.perf = response.elapsedTime;
+		            });
+			};
+		});
+		
+
+		app.controller('hashtag', function($scope, $http) {
+			$scope.getHashtag = function (message, hashtag) {
+				$http.get('https://minitwettest.appspot.com/_ah/api/apiTweet/v1/hashtag?nbDeMessages='+message+'&tag='+encodeURIComponent(hashtag))
 		            .success(function(response) {
 		            	$scope.usertimeline = response.items;
 		            	$scope.perf = response.elapsedTime;
