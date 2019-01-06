@@ -5,17 +5,17 @@ Dans le cadre des cours de Web&Cloud en Master Informatique à l'Université Sci
    HUNAULT Marion  
    M1 ALMA 2018-2019  
 ## Plan
-* [Présentation du projet](https://github.com/Astlo/MiniTweet#Presentation)
-* [Tests](https://github.com/Astlo/MiniTweet#Tests)
-   - [question 1 : Post d'un tweet](https://github.com/Astlo/MiniTweet#Tests#Question_1)  
-   - [question 2 : Récupération timeline](https://github.com/Astlo/MiniTweet#Tests#Question_2)  
-   - [question 3 : Hashtag](https://github.com/Astlo/MiniTweet#Tests#Question_3) 
-* [Performances](https://github.com/Astlo/MiniTweet#Tests)
+* [Présentation du projet](https://github.com/Astlo/MiniTweet/blob/master/readme.md#presentation)
+* [Tests](https://github.com/Astlo/MiniTweet/blob/master/readme.md#tests)
+   - [question 1 : Post d'un tweet](https://github.com/Astlo/MiniTweet/blob/master/readme.md#question-1-)  
+   - [question 2 : Récupération timeline](https://github.com/Astlo/MiniTweet/blob/master/readme.md#question-2-)  
+   - [question 3 : Hashtag](https://github.com/Astlo/MiniTweet/blob/master/readme.md#question-3) 
+* [Performances](https://github.com/Astlo/MiniTweet/blob/master/readme.md#performances)
 ## Presentation
    Le [sujet] du projet.  
    Le [lien] de l'API.  
 ## Tests
-### Question 1 :
+### Question_1 :
 >Sur 30 mesures, combien de temps en moyenne prend le post d’un twitt pour une personne suivie par 100 followers, 1000 followers ou 5000 followers ?
 
 100 foll | 1000 foll | 5000 foll
@@ -58,7 +58,7 @@ x | 100 | 1000 | 5000 |
 **variance** | 2823,840 | 1592,079 | 16676,741
 **écart type** | 53,140 | 39,901 | 129,138
 
-### Question 2 :
+### Question_2 :
 >Pour chaque configuration du nombre de followers, sur 30 mesures, combien de temps en moyenne pour extraire ses 10 derniers messages,
 50 derniers messages et 100 derniers messages ?
 
@@ -183,7 +183,7 @@ x | 10 | 50 | 100 |
 **variance** | 298,717 | 58,671 | 0,093
 **écart type** | 17,283 | 7,660 | 0,305
 
-### Question 3
+### Question_3
 >Sur 30 mesures, combien de temp en moyenne pour extraire les 50 derniers message pour une hashtag concernant 1000 et 5000 messages ?
 
 1000 mes | 5000 mes
