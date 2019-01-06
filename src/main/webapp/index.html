@@ -7,28 +7,36 @@
 	
   <head>
     <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
-    <title>Hello App Engine</title>
+    <title>MiniTweet</title>
+    <link rel="icon" href="favicon.ico"/>
   </head>
 
   <body ng-app="servicesApi">
-    <h1>Hello Twitter!</h1>
-  
+    <h1 align="center">Hello Twitter!</h1>
     <table>
       <tr>
-        <td colspan="2" style="font-weight:bold;">Available Api:</td>        
+        <td colspan="2" style="font-weight:bold;">Liens :</td>        
       </tr>
       <tr>
         <td><a href='/_ah/api/explorer'>The api</a></td>
       </tr>
+      <tr>
+      	<td><a href="https://github.com/Astlo/MiniTweet">Sources Github</a></td>
+      </tr>
     </table>
-    <h2>Ajout d'un nouvel utilisateur</h2>
+    
+	<div style="text-align: center">
+    	<img src="Twitter_Bird.svg.png" style="width:300px;height:244px;">
+  	</div>
+  	<div  style="margin-left:3%">
+    <h2>Ajout de n nouvels utilisateurs : de 0 à n</h2>
     <div ng-controller="addUser">
 	    <form novalidate class = "simple-form">
 		    <input type="text" ng-model = "number" placeholder ="Entrez le nombre d'utilisateurs"/><br>
 		    <input type="submit" ng-click="SendUser(number)" value = "Ajouter"/>
 	    </form>
     </div>
-    <h2>Follow de l'utilisateur usertest0</h2>
+    <h2>n utilisateurs follow l'utilisateur usertest0</h2>
     <div ng-controller="followUser">
 	    <form novalidate class = "simple-form">
 		  <input type="text" ng-model = "number" placeholder ="Entrez le nombre de follow"/><br>
@@ -243,6 +251,6 @@
 			};
 		});
 	</script>
-	
+	</div>
   </body>
 </html>

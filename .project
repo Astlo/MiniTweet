@@ -33,4 +33,16 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/main/webapp/Twitter_Bird.svg.png</name>
+			<type>1</type>
+			<location>C:/Users/Astlo/Pictures/Twitter_Bird.svg.png</location>
+		</link>
+		<link>
+			<name>src/main/webapp/favicon.ico</name>
+			<type>1</type>
+			<location>C:/Users/Astlo/Pictures/favicon.ico</location>
+		</link>
+	</linkedResources>
 </projectDescription>
