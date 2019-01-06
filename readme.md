@@ -231,5 +231,12 @@ x | 1000 messages | 5000 messages
 
 ### Performances
 
+![alt text][post_tweet]
+![alt text][recuperation_timeline]
+![alt text][hashtag]
+
 [sujet]: https://docs.google.com/document/d/1wVf1dWzbmxp5wtJd_I9kAHpke29FpPqe8mPOCv3J1mM/edit?usp=sharing
 [lien]: https://minitwettest.appspot.com/
+[post_tweet]: https://github.com/Astlo/MiniTweet/blob/master/post_tweet.png
+[recuperation_timeline]: https://github.com/Astlo/MiniTweet/blob/master/Recuperation_timeline.png
+[hashtag]: https://github.com/Astlo/MiniTweet/blob/master/hashtag.png
